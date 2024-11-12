@@ -2,16 +2,54 @@
 
 import React from "react";
 import { DefaultPageLayout } from "@/subframe/layouts/DefaultPageLayout";
-import { Badge } from "@/subframe/components/Badge";
-import { Avatar } from "@/subframe/components/Avatar";
-import { Button } from "@/subframe/components/Button";
-import { IconWithBackground } from "@/subframe/components/IconWithBackground";
-import { Feed } from "@/subframe/components/Feed";
+import {ExploreFeatureCard} from "@/subframe/components/ExploreFeatureCard";
+import {SelectListItem} from "@/subframe/components/SelectListItem";
+import { Dialog } from "@/subframe/components/Dialog";
+import {Button} from "@/subframe/components/Button";
 
-function TripActivityFeed() {
+
+function Itineraries() {
+  const [open, setOpen] = React.useState(false)
+
   return (
     <DefaultPageLayout>
-      <div className="container max-w-none flex h-full w-full flex-col items-start bg-default-background py-12">
+      <div className="flex flex-col w-full items-center justify-items-center space-y-6">
+      <Button variant="neutral-secondary" onClick={() => setOpen(true)}>
+          Open dialog
+      </Button>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <Dialog.Content>
+            <div>Dialog contents</div>
+          </Dialog.Content>
+        </Dialog>
+      
+        <ExploreFeatureCard className="w-3/4 rounded-3xl"
+          image="https://res.cloudinary.com/subframe/image/upload/v1711417508/shared/wd5ui3rofpbpbjdltzm2.png"
+          title="Title"
+          desc="Description"
+          metadata="Metadata"
+        />
+      <ExploreFeatureCard className="w-3/4 rounded-3xl"
+        image="https://res.cloudinary.com/subframe/image/upload/v1711417508/shared/wd5ui3rofpbpbjdltzm2.png"
+        title="Title"
+        desc="Description"
+        metadata="Metadata"
+      />
+      </div>
+    </DefaultPageLayout>
+  );
+}
+
+export default Itineraries;
+
+
+// import { Badge } from "@/subframe/components/Badge";
+// import { Avatar } from "@/subframe/components/Avatar";
+// import { Button } from "@/subframe/components/Button";
+// import { IconWithBackground } from "@/subframe/components/IconWithBackground";
+// import { Feed } from "@/subframe/components/Feed";
+
+{/* <div className="container max-w-none flex h-full w-full flex-col items-start bg-default-background py-12">
         <div className="flex w-full items-start gap-8 rounded-md border border-solid border-neutral-border bg-default-background px-12 py-12 shadow-sm mobile:flex-col mobile:gap-8">
           <div className="flex grow shrink-0 basis-0 flex-col items-start gap-8">
             <div className="flex w-full flex-col items-start gap-1">
@@ -232,9 +270,4 @@ function TripActivityFeed() {
             </div>
           </div>
         </div>
-      </div>
-    </DefaultPageLayout>
-  );
-}
-
-export default TripActivityFeed;
+      </div> */}
