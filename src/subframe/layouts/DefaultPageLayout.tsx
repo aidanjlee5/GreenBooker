@@ -8,8 +8,10 @@
  */
 
 import React from "react";
+import Link from "next/link";
 import * as SubframeCore from "@subframe/core";
 import { SidebarWithLargeItems } from "../components/SidebarWithLargeItems";
+import { Button } from "@/subframe/components/Button";
 import { DropdownMenu } from "../components/DropdownMenu";
 import { Alert } from "../components/Alert";
 
@@ -26,6 +28,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
   { children, className, ...otherProps }: DefaultPageLayoutRootProps,
   ref
 ) {
+
   return (
     <div
       className={SubframeCore.twClassNames(
@@ -38,32 +41,44 @@ const DefaultPageLayoutRoot = React.forwardRef<
       <SidebarWithLargeItems
         className="mobile:hidden"
         header={
-          <img
-            className="h-8 w-8 flex-none object-cover"
-            src="https://res.cloudinary.com/subframe/image/upload/v1711417507/shared/y2rsnhq3mex4auk54aye.png"
-          />
+        <div className="flex flex-row space-x-0">
+          <p className=" text-3xl font-bold flex-none text-brand-primary">Green</p>
+          <p className=" text-3xl font-bold flex-none">Booker</p>
+        </div>
+          // <img
+          //   className="h-8 w-8 flex-none object-cover"
+          //   src="https://res.cloudinary.com/subframe/image/upload/v1711417507/shared/y2rsnhq3mex4auk54aye.png"
+          // />
         }
         footer={
-          <Alert
-            icon={null}
-            title="Get $100 bonus"
-            description="Limited time only"
-          />
+           <Button
+              className="h-10 w-full flex-none"
+              variant="destructive-secondary"
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
+           >
+            Sign out
+           </Button>
         }
       >
-        <SidebarWithLargeItems.NavItem icon="FeatherHome" selected={true}>
-          Home
+      <div className="flex flex-col w-full">
+        <Link href="/">
+          <SidebarWithLargeItems.NavItem icon="FeatherHome">
+            Home
+          </SidebarWithLargeItems.NavItem>
+        </Link>
+        <Link href="/itineraries">
+          <SidebarWithLargeItems.NavItem icon="FeatherInbox">
+            Itineraries
+          </SidebarWithLargeItems.NavItem>
+        </Link>
+      </div>
+        {/* <SidebarWithLargeItems.NavItem icon="FeatherBarChart2">
+          Profile
         </SidebarWithLargeItems.NavItem>
-        <SidebarWithLargeItems.NavItem icon="FeatherInbox">
-          Inbox
-        </SidebarWithLargeItems.NavItem>
-        <SidebarWithLargeItems.NavItem icon="FeatherBarChart2">
-          Reports
-        </SidebarWithLargeItems.NavItem>
-        <SidebarWithLargeItems.NavItem icon="FeatherBell">
+        {/* <SidebarWithLargeItems.NavItem icon="FeatherBell">
           Notifications
-        </SidebarWithLargeItems.NavItem>
-        <SubframeCore.DropdownMenu.Root>
+        </SidebarWithLargeItems.NavItem> */}
+        {/* <SubframeCore.DropdownMenu.Root>
           <SubframeCore.DropdownMenu.Trigger asChild={true}>
             <SidebarWithLargeItems.NavItem icon="FeatherMoreHorizontal">
               More
@@ -86,7 +101,7 @@ const DefaultPageLayoutRoot = React.forwardRef<
               </DropdownMenu>
             </SubframeCore.DropdownMenu.Content>
           </SubframeCore.DropdownMenu.Portal>
-        </SubframeCore.DropdownMenu.Root>
+        </SubframeCore.DropdownMenu.Root> */}
       </SidebarWithLargeItems>
       {children ? (
         <div className="flex grow shrink-0 basis-0 flex-col items-start gap-4 self-stretch overflow-y-auto bg-default-background">

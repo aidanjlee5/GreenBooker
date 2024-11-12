@@ -18,7 +18,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
     "@radix-ui/themes": "^3.1.5",
-    "@subframe/core": "^1.127.0",
+    "@subframe/core": "^1.128.0",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.3.2",
     "clsx": "^2.1.1",
