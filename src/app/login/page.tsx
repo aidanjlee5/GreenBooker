@@ -9,13 +9,13 @@
 //     CardFooter, 
 //     CardHeader, 
 //     CardTitle,
-// } from "@/components/ui/card"
+// } from "../../../components/ui/card"
 
-// import{Tabs,TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
-// import{Button} from "@/components/ui/button"
-// import{Separator} from "@/components/ui/separator"
-// import{Input} from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
+// import{Tabs,TabsContent, TabsList, TabsTrigger} from "../../../components/ui/tabs"
+// import{Button} from "../../../components/ui/button"
+// import{Separator} from "../../../components/ui/separator"
+// import{Input} from "../../../components/ui/input"
+// import { Label } from "../../../components/ui/label"
 
 
 
@@ -103,34 +103,28 @@
 "use client";
 
 import React from "react";
-import { OAuthSocialButton } from "@/subframe/components/OAuthSocialButton";
-import { TextField } from "@/subframe/components/TextField";
 import { Button } from "@/subframe/components/Button";
+import { TextField } from "@/subframe/components/TextField";
 
-function SimpleSignInCard() {
+export default function Login() {
   return (
     <div className="container max-w-none flex h-full w-full flex-col items-center justify-center gap-2 bg-neutral-50">
       <div className="flex w-full max-w-[384px] flex-col items-center justify-center gap-8 rounded-md border border-solid border-neutral-border bg-white px-12 py-12">
-        <img
-          className="w-40 flex-none"
-          src="https://res.cloudinary.com/subframe/image/upload/v1711417518/shared/fdb8rlpzh1gds6vzsnt0.svg"
-        />
+        <p className=" text-3xl font-bold w-40 flex-none">GreenBooker</p>
         <div className="flex w-full flex-col items-start gap-6">
           <div className="flex w-full flex-col items-start gap-4">
-            <OAuthSocialButton
+            <Button
               className="h-10 w-full flex-none"
-              logo="https://res.cloudinary.com/subframe/image/upload/v1711417516/shared/z0i3zyjjqkobzuaecgno.svg"
               onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
             >
               Sign in with Google
-            </OAuthSocialButton>
-            <OAuthSocialButton
+            </Button>
+            <Button
               className="h-10 w-full flex-none"
-              logo="https://res.cloudinary.com/subframe/image/upload/v1711417561/shared/kplo8lv2zjit3brqmadv.png"
               onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
             >
               Sign in with Apple
-            </OAuthSocialButton>
+            </Button>
           </div>
           <div className="flex w-full items-center justify-center gap-2">
             <div className="flex h-px grow shrink-0 basis-0 flex-col items-center gap-2 bg-neutral-border" />
@@ -175,9 +169,16 @@ function SimpleSignInCard() {
         >
           Sign in
         </Button>
+        <Button
+            className="h-10 w-full flex-none"
+            size="large"
+            icon={null}
+            onClick={() => window.location.href = "/signup"}
+            variant="neutral-primary"
+        >
+            Don't have an account? Sign up here
+        </Button>
       </div>
     </div>
   );
 }
-
-export default SimpleSignInCard;
