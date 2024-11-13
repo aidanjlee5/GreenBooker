@@ -6,15 +6,15 @@ import { TextField } from "@/subframe/components/TextField";
 import { Button } from "@/subframe/components/Button";
 import { login } from "./actions";
 
-function SimpleSignInCard() {
+function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null); // To display errors
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null); // Reset error before submitting
+    setError(null);
 
     if (!email || !password) {
       setError("Both email and password are required.");
@@ -27,8 +27,8 @@ function SimpleSignInCard() {
       formData.append("password", password);
 
       await login(formData);
-    } catch (err) {
-      setError("Invalid login credentials. Please try again."); // Handle login failure
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred. Please try again.");
     }
   };
 
@@ -118,7 +118,7 @@ function SimpleSignInCard() {
   );
 }
 
-export default SimpleSignInCard;
+export default Login;
 
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import { faGoogle, faApple } from "@fortawesome/free-brands-svg-icons";

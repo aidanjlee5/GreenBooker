@@ -14,9 +14,8 @@ export default function SignUp() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null); // Reset error state
+    setError(null); 
 
-    // Basic validation
     if (!email || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
@@ -32,9 +31,9 @@ export default function SignUp() {
       formData.append("email", email);
       formData.append("password", password);
 
-      await signup(formData); // Call the signup action
-    } catch (err) {
-      setError("Signup failed. Please try again."); // Handle signup failure
+      await signup(formData);
+    } catch (err: any) {
+      setError(err.message || "Signup failed. Please try again.");
     }
   };
 
