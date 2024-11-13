@@ -41,9 +41,9 @@ export default function SignUp() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="container max-w-none flex h-full w-full flex-col items-center justify-center gap-2 bg-neutral-50">
+      <div className="container max-w-none flex h-full w-full flex-col items-center justify-center gap-2 bg-neutral-50 my-10">
         <div className="flex w-full max-w-[384px] flex-col items-center justify-center gap-8 rounded-md border border-solid border-neutral-border bg-white px-12 py-12">
-          <p className=" text-3xl font-bold w-40 flex-none">GreenBooker</p>
+          <p className=" text-3xl font-bold w-40 flex-none"><span className="text-brand-primary">Green</span>Booker</p>
           <div className="flex w-full flex-col items-start gap-6">
             <div className="flex w-full flex-col items-start gap-4">
               <OAuthSocialButton
