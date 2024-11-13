@@ -6,15 +6,15 @@ import { TextField } from "@/subframe/components/TextField";
 import { Button } from "@/subframe/components/Button";
 import { login } from "./actions";
 
-function SimpleSignInCard() {
+function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null); // To display errors
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null); // Reset error before submitting
+    setError(null);
 
     if (!email || !password) {
       setError("Both email and password are required.");
@@ -27,18 +27,17 @@ function SimpleSignInCard() {
       formData.append("password", password);
 
       await login(formData);
-    } catch (err) {
-      setError("Invalid login credentials. Please try again."); // Handle login failure
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred. Please try again.");
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="container max-w-none flex h-full w-full flex-col items-center justify-center gap-2 bg-neutral-50">
+      <div className="container max-w-none flex h-full w-full flex-col items-center justify-center gap-2 bg-neutral-50 my-10">
         <div className="flex w-full max-w-[384px] flex-col items-center justify-center gap-8 rounded-md border border-solid border-neutral-border bg-white px-12 py-12">
           <div className="flex flex-row space-x-0">
-            <p className=" text-3xl font-bold flex-none text-brand-primary">Green</p>
-            <p className=" text-3xl font-bold flex-none">Booker</p>
+          <p className=" text-3xl font-bold w-40 flex-none"><span className="text-brand-primary">Green</span>Booker</p>
           </div>
           <div className="flex w-full flex-col items-start gap-6">
             <div className="flex w-full flex-col items-start gap-4">
@@ -119,7 +118,7 @@ function SimpleSignInCard() {
   );
 }
 
-export default SimpleSignInCard;
+export default Login;
 
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // import { faGoogle, faApple } from "@fortawesome/free-brands-svg-icons";
