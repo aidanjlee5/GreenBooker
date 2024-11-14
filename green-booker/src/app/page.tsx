@@ -10,14 +10,68 @@ import { Button } from "@/subframe/components/Button";
 import { DefaultPageLayout } from "@/subframe/layouts/DefaultPageLayout";
 import CalendarButton from "@/components/CalendarButton";
 import { useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 
-function QuizPageWithSteps() {
+const supabase = createClient();
+
+function ItineraryForm() {
+  const [leavingFrom, setLeavingFrom] = useState("");
+  const [goingTo, setGoingTo] = useState("");
   const [departureDate, setDepartureDate] = useState(null);
   const [returnDate, setReturnDate] = useState(null);
+  const [preferredActivities, setPreferredActivities] = useState("");
+  const [familyFriendly, setFamilyFriendly] = useState(false);
+  const [budgetRange, setBudgetRange] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    setError(null);
+
+    if (!leavingFrom || !goingTo || !departureDate || !returnDate || !preferredActivities || !budgetRange) {
+      setError("Please fill out all fields.");
+      return;
+    }
+
+    const formattedDepartureDate = departureDate ? departureDate.toISOString().split('T')[0] : null;
+    const formattedReturnDate = returnDate ? returnDate.toISOString().split('T')[0] : null;
+
+    const { data, error } = await supabase
+      .from("input")
+      .insert([
+        {
+          leaving_from: leavingFrom,
+          going_to: goingTo,
+          departure_date: formattedDepartureDate,
+          return_date: formattedReturnDate,
+          preferred_activities: preferredActivities,
+          family_friendly: familyFriendly,
+          budget_range: budgetRange,
+        },
+      ]);
+
+      const resetForm = () => {
+        setLeavingFrom("");
+        setGoingTo("");
+        setDepartureDate(null);
+        setReturnDate(null);
+        setPreferredActivities("");
+        setFamilyFriendly(false);
+        setBudgetRange("");
+      };
+
+      if (error) {
+        alert("There was an error submitting the form, please try again later.");
+      } else {
+        alert("Itinerary created successfully!");
+        resetForm();
+      }
+
+  }
 
   return (
     <DefaultPageLayout>
-      <div className="container max-w-none flex h-full w-full flex-col items-center gap-4 bg-default-background py-12">
+      <form onSubmit={handleSubmit} className="container max-w-none flex h-full w-full flex-col items-center gap-4 bg-default-background py-12">
         <div className="flex w-full max-w-[576px] flex-col items-start gap-6">
           <div className="flex w-full flex-col items-center">
             <span className="text-heading-2 font-heading-2 text-default-font">
@@ -37,17 +91,15 @@ function QuizPageWithSteps() {
               <div className="flex w-full grow shrink-0 basis-0 flex-col items-start gap-6">
                 <div className="flex w-full items-start gap-4">
                   <div className="flex grow shrink-0 basis-0 flex-col items-start gap-4">
-                  <TextField
+                      <TextField
                         className="h-auto w-full flex-none"
                         label="Leaving From"
                         helpText=""
                       >
                         <TextField.Input
                           placeholder="Charlotte, NC, USA"
-                          value=""
-                          onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
-                          ) => {}}
+                          value={leavingFrom}
+                          onChange={(e) => setLeavingFrom(e.target.value)}
                         />
                       </TextField>
                     
@@ -58,10 +110,8 @@ function QuizPageWithSteps() {
                       >
                         <TextField.Input
                           placeholder="Paris, France"
-                          value=""
-                          onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
-                          ) => {}}
+                          value={goingTo}
+                          onChange={(e) => setGoingTo(e.target.value)}
                         />
                       </TextField>
 
@@ -94,10 +144,8 @@ function QuizPageWithSteps() {
                       
                       <TextArea.Input
                         placeholder="e.g., Hiking, Museums, Culinary Tours"
-                        value=""
-                        onChange={(
-                          event: React.ChangeEvent<HTMLTextAreaElement>
-                        ) => {}}
+                        value={preferredActivities}
+                        onChange={(e) => setPreferredActivities(e.target.value)}
                       />
                     </TextArea>
                   </div>
@@ -106,8 +154,8 @@ function QuizPageWithSteps() {
                   <div className="flex flex-col items-start gap-4">
                     <Checkbox
                       label="Include Family-Friendly Options"
-                      checked={false}
-                      onCheckedChange={(checked: boolean) => {}}
+                      checked={familyFriendly}
+                      onCheckedChange={(checked) => setFamilyFriendly(checked)}
                     />
                   </div>
                 </div>
@@ -118,8 +166,8 @@ function QuizPageWithSteps() {
                       label="Budget Range"
                       placeholder="Select your budget"
                       helpText=""
-                      value={undefined}
-                      onValueChange={(value: string) => {}}
+                      value={budgetRange}
+                      onValueChange={setBudgetRange}
                     >
                       <div className="flex w-full flex-col items-start">
                         <Select.Item value="$500 - $1000">
@@ -135,22 +183,26 @@ function QuizPageWithSteps() {
                 </div>
               </div>
               </div>
+              {error && (
+                <p className="text-sm text-red-600">{error}</p> // Error message
+              )}
             </div>
               
           <div className="flex w-full justify-center mb-6">
             <Button
               size="medium"
               onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
+              type="submit"
             >
               Create my Itinerary
             </Button>
           </div>
         </div>
       </div>
-      </div>
+      </form>
     </DefaultPageLayout>
   );
 }
 
-export default QuizPageWithSteps;
+export default ItineraryForm;
 
