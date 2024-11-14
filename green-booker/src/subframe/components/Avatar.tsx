@@ -10,7 +10,7 @@ import * as SubframeCore from "@subframe/core";
 interface AvatarRootProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "brand" | "neutral" | "error" | "success" | "warning";
   size?: "x-large" | "large" | "medium" | "small" | "x-small";
-  children?: string;
+  children?: React.ReactNode;
   image?: string;
   square?: boolean;
   className?: string;
