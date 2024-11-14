@@ -11,7 +11,7 @@ interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   active?: boolean;
   disabled?: boolean;
   icon?: SubframeCore.IconName;
-  children?: string;
+  children?: React.ReactNode;
   className?: string;
 }
 

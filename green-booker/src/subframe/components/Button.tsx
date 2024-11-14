@@ -21,7 +21,7 @@ interface ButtonRootProps
     | "destructive-tertiary"
     | "inverse";
   size?: "large" | "medium" | "small";
-  children?: string;
+  children?: React.ReactNode;
   icon?: SubframeCore.IconName;
   iconRight?: SubframeCore.IconName;
   loading?: boolean;

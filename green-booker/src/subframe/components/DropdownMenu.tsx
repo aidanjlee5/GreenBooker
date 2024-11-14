@@ -9,7 +9,7 @@ import * as SubframeCore from "@subframe/core";
 
 interface DropdownItemProps
   extends React.ComponentProps<typeof SubframeCore.DropdownMenu.Item> {
-  children?: string;
+  children?: React.ReactNode;
   icon?: SubframeCore.IconName;
   className?: string;
 }

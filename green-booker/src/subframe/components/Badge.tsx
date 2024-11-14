@@ -10,7 +10,7 @@ import * as SubframeCore from "@subframe/core";
 interface BadgeRootProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "brand" | "neutral" | "error" | "warning" | "success";
   icon?: SubframeCore.IconName;
-  children?: string;
+  children?: React.ReactNode;
   iconRight?: SubframeCore.IconName;
   className?: string;
 }

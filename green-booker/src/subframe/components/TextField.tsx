@@ -7,8 +7,9 @@
 import React from "react";
 import * as SubframeCore from "@subframe/core";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  placeholder?: string;
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "placeholder"> {
+  placeholder?: React.ReactNode;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
@@ -24,7 +25,7 @@ const Input = React.forwardRef<HTMLElement, InputProps>(function Input(
         "h-full w-full border-none bg-transparent text-body font-body text-default-font outline-none placeholder:text-neutral-400",
         className
       )}
-      placeholder={placeholder}
+      placeholder={placeholder as string}
       ref={ref as any}
       {...otherProps}
     />
@@ -36,8 +37,8 @@ interface TextFieldRootProps
   disabled?: boolean;
   error?: boolean;
   variant?: "outline" | "filled";
-  label?: string;
-  helpText?: string;
+  label?: React.ReactNode;
+  helpText?: React.ReactNode;
   icon?: SubframeCore.IconName;
   iconRight?: SubframeCore.IconName;
   children?: React.ReactNode;
