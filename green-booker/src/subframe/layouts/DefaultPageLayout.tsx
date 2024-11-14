@@ -12,8 +12,7 @@ import Link from "next/link";
 import * as SubframeCore from "@subframe/core";
 import { SidebarWithLargeItems } from "../components/SidebarWithLargeItems";
 import { Button } from "@/subframe/components/Button";
-import { DropdownMenu } from "../components/DropdownMenu";
-import { Alert } from "../components/Alert";
+import { createClient } from "@/utils/supabase/client";
 
 interface DefaultPageLayoutRootProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -28,6 +27,8 @@ const DefaultPageLayoutRoot = React.forwardRef<
   { children, className, ...otherProps }: DefaultPageLayoutRootProps,
   ref
 ) {
+
+  const supabase = createClient();
 
   return (
     <div
@@ -54,7 +55,10 @@ const DefaultPageLayoutRoot = React.forwardRef<
            <Button
               className="h-10 w-full flex-none"
               variant="destructive-secondary"
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {}}
+              onClick={async () => {
+                await supabase.auth.signOut();
+                window.location.href = "/login";
+              }}
            >
             Sign out
            </Button>
