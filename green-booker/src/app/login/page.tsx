@@ -145,19 +145,19 @@ export default SimpleSignInCard;
 //     return (
 //         <div className="max-h-screen mt-16 mb-20">
 //         <div className="h-auto min-h-[500px] w-full flex items-center justify-center">
-//             <Tabs defaultValue="login" className="flex flex-col w-full max-w-md">
+//             <Tabs defaultValue="login" className="flex flex-col w-full max-w-md ">
 //                 <TabsList>
-//                     <TabsTrigger className="w-full"value="login"><span className="font-bold">Login</span></TabsTrigger>
+//                     <TabsTrigger className="w-full "value="login"><span className="font-bold">Login</span></TabsTrigger>
 //                     <TabsTrigger className="w-full"value="signup"><span className="font-bold">Sign Up</span></TabsTrigger>
 //                 </TabsList>   
 //                     <TabsContent value="login" className="h-full">
-//                         <Card className="flex flex-col w-full max-w-md">
+//                         <Card className="flex flex-col w-full max-w-md ">
 //                             <CardHeader className="justify-center items-center space-y-5">
 //                                 <CardTitle className="text-2xl">Green Booker</CardTitle>
-//                                 <Button className="w-72 mb-4">
+//                                 <Button className="w-72 mb-4 bg-brand-primary">
 //                                     <FontAwesomeIcon icon={faGoogle} /><span className="font-semibold">Sign in with Google</span>
 //                                 </Button>
-//                                 <Button className="w-72">
+//                                 <Button className="w-72 bg-brand-primary">
 //                                     <FontAwesomeIcon icon={faApple} /><span className="font-semibold">Sign in with Apple</span>
 //                                 </Button>
 //                             </CardHeader>
@@ -177,7 +177,7 @@ export default SimpleSignInCard;
 //                                 </div>
 //                             </CardContent>
 //                             <CardFooter className="justify-center mt-4">
-//                                 <Button className="w-72"><span className="font-semibold">Sign In</span></Button>
+//                                 <Button className="w-72 bg-brand-primary"><span className="font-semibold">Sign In</span></Button>
 //                             </CardFooter>
 //                         </Card>
 //                     </TabsContent>
@@ -185,10 +185,10 @@ export default SimpleSignInCard;
 //                     <Card className="flex flex-col w-full max-w-md">
 //                             <CardHeader className="justify-center items-center space-y-5">
 //                                 <CardTitle className="text-2xl">Green Booker</CardTitle>
-//                                 <Button className="w-72 mb-4">
-//                                     <FontAwesomeIcon icon={faGoogle} /><span className="font-semibold">Sign up with Google</span>
+//                                 <Button className="w-72 mb-4 bg-brand-primary">
+//                                     <FontAwesomeIcon icon={faGoogle} /><span className="font-semibold ">Sign up with Google</span>
 //                                 </Button>
-//                                 <Button className="w-72">
+//                                 <Button className="w-72 bg-brand-primary">
 //                                     <FontAwesomeIcon icon={faApple} /><span className="font-semibold">Sign up with Apple</span>
 //                                 </Button>
 //                             </CardHeader>
@@ -212,7 +212,7 @@ export default SimpleSignInCard;
 //                                 </div>
 //                             </CardContent>
 //                             <CardFooter className="justify-center mt-4">
-//                                 <Button className="w-72"><span className="font-semibold">Sign Up</span></Button>
+//                                 <Button className="w-72 bg-brand-primary"><span className="font-semibold">Sign Up</span></Button>
 //                             </CardFooter>
 //                         </Card>
 //                     </TabsContent>
